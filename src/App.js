@@ -1,25 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-
-function App() {
+import Header from './components/Header/Header.jsx';
+import Activity from './components/Activity/Activity';
+import { BrowserRouter, Route } from 'react-router-dom';
+import Profile from './components/Profile/Profile';
+import Dialogs from './components/Dialogs/Dialogs';
+const App = (props) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="app-wrapper">
+        <Header/>
+        <div className='container'>
+          <Route path='/profile' component={Profile}/>
+          <Route path='/activity' render={() => 
+            <Activity 
+              postsPage = {props.state.postsPage}
+              dispatch = {props.dispatch}
+            />
+          }/>
+          <Route path='/dialogs' render={() => 
+            <Dialogs 
+              dialogs = {props.state.dialogsPage.dialogs} 
+              messages = {props.state.dialogsPage.messages} 
+              newMessageText = {props.state.dialogsPage.newMessageText}
+              dispatch = {props.dispatch}/>
+          }/>
+        </div>
+      </div>
+    </BrowserRouter>
   );
 }
 
