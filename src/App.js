@@ -4,7 +4,7 @@ import Header from './components/Header/Header.jsx';
 import Activity from './components/Activity/Activity';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Profile from './components/Profile/Profile';
-import Dialogs from './components/Dialogs/Dialogs';
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 const App = (props) => {
   return (
     <BrowserRouter>
@@ -19,10 +19,8 @@ const App = (props) => {
             />
           }/>
           <Route path='/dialogs' render={() => 
-            <Dialogs 
-              dialogs = {props.state.dialogsPage.dialogs} 
-              messages = {props.state.dialogsPage.messages} 
-              newMessageText = {props.state.dialogsPage.newMessageText}
+            <DialogsContainer
+              state = {props.state}
               dispatch = {props.dispatch}/>
           }/>
         </div>
