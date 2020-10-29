@@ -34,18 +34,6 @@ let initialState = {
 }
 
 const postsReducer = (state = initialState, action) => {
-  if (action.type === UPDATE_NEW_COMMENT) {
-    state.posts.find(el => el.id ===action.id).newCommentText = action.commentText;
-  } else if (action.type === ADD_COMMENT) {
-    let newComment = {
-      text: state.posts.find(el => el.id ===action.id).newCommentText
-    }
-
-    state.posts.find(el => el.id ===action.id).comments.push(newComment);
-    state.posts.find(el => el.id ===action.id).newCommentText = '';
-  }
-  return state;
-
   switch (action.type) {
     case ADD_COMMENT:
       let newComment = {
