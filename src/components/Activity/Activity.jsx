@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './Activity.module.scss';
-import Post from './Post/Post';
+import PostContainer from "./Post/PostContainer";
 
 const Activity = (props) => {
   let postsElements = props.postsPage.posts.map(post => 
-    <Post 
+    <PostContainer
       text={post.text} 
       id = {post.id}
       comments={post.comments} 
