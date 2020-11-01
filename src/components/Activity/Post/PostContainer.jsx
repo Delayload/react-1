@@ -1,26 +1,19 @@
 import React from 'react';
 import Post from './Post';
 import { addCommentActionCreator, onCommentChangeActionCreator } from '../../../redux/posts-reducer';
+import {connect} from "react-redux";
 
-const PostContainer = (props) => {
-  let addComment = () => {
-    props.dispatch(addCommentActionCreator(props.id));
+let mapDispatchToProps = (dispatch) => {
+  return {
+    updateNewCommentChange: (text, id) => {
+      dispatch(onCommentChangeActionCreator(text, id));
+    },
+    addNewComment: (id) => {
+      dispatch(addCommentActionCreator(id));
+    }
   }
-
-  let changeComment = (text) => {
-    props.dispatch(onCommentChangeActionCreator(text, props.id));
-  }
-
-  return (
-    <div>
-        <Post
-          updateNewCommentChange={changeComment}
-          addNewComment={addComment}
-          comments={props.comments}
-          newCommentText={props.newCommentText}
-        />
-    </div>
-  );
 }
 
-export default PostContainer;
+const newPostContainer = connect(null,mapDispatchToProps)(Post);
+
+export default newPostContainer;

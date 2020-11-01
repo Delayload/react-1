@@ -8,16 +8,16 @@ const Post = (props) => {
 
   let onCommentChange = () => {
     let text = newPostElement.current.value;
-    props.updateNewCommentChange(text);
+    props.updateNewCommentChange(text, props.id);
   }
 
   let onAddComment = () => {
-    props.addNewComment();
+    props.addNewComment(props.id);
   }
-
   return (
     <div>
       {props.text}
+      {props.id}
       <div>
         <button>Comment</button>
         <button>Toast</button>
